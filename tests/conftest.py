@@ -1,6 +1,6 @@
 import pytest
 import os
-from main import create_app
+from factory import create_app
 from flask import Flask, _request_ctx_stack, _app_ctx_stack, g, request
 from flask.signals import got_request_exception
 from datetime import datetime
@@ -19,11 +19,10 @@ https://flask.palletsprojects.com/en/2.1.x/reqcontext/
 @pytest.fixture()
 def app():
     app = create_app()
+    app.config.update({
+        "TESTING": True,
+    })
 
-    if os.getenv('GAE_ENV', '').startswith('standard'):
-        app.config.from_object('config.config_module.ProductionConfig')
-    else:
-        app.config.from_object('config.config_module.DevelopmentConfig')
     with app.test_client() as test_client:
         with app.app_context():
             yield test_client
@@ -35,6 +34,6 @@ def client(app):
 
 
 @pytest.fixture()
-def modify_g(app):
+def global_param(app):
     # set g here
     pass
