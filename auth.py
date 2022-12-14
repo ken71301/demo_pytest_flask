@@ -1,10 +1,12 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, g
 
 app = Blueprint('auth', __name__)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # 簡單的登入實作，get時給登入頁的html，post時驗證輸入的帳號密碼
+
     if request.method == 'POST':
         # 取得使用者輸入的帳號和密碼
         username = request.form['username']
@@ -12,6 +14,7 @@ def login():
 
         # 檢查帳號和密碼是否正確
         if check_credentials(username, password):
+            g.current_user = 'admin'
             return "登入成功"
         else:
             return "登入失敗"
@@ -22,7 +25,7 @@ def login():
 
 @app.route('/')
 def index():
-    return 'ok'
+    return 'Server is alive.'
 
 
 # 檢查帳號和密碼的函數

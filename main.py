@@ -1,7 +1,6 @@
-
 from factory import create_app
 
-
+# 用flask的factory method跟blueprint建endpoint
 app = create_app()
 
 
