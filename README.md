@@ -76,6 +76,7 @@ conftest.py 文件被 Pytest 自動發現，
 1. 用return test_client時，只可以在測試中看到response object，單純測試回傳值或status code時可以使用
 
 
+
     @pytest.fixture()
     def app_return():
         # 示範不yield，return test client的flow
@@ -92,6 +93,7 @@ conftest.py 文件被 Pytest 自動發現，
 2. 用yield test_client時，由於測試會停留在flask的life cycle內，可以在call api完後看懂flask內的東西，例如g:
 
 
+
     @pytest.fixture()
     def app_yield():
         # 示範不打開app context，可以在call client後測試g，但無法事先設定
@@ -104,6 +106,7 @@ conftest.py 文件被 Pytest 自動發現，
             yield test_client
 
 3. 承2，手動開啟app context，可以在測試內的任何地方看懂g，例如可以另外設定g.param1，g.param2的值，提高測試的方便程度
+
 
 
     @pytest.fixture()
