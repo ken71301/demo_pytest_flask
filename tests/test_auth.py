@@ -40,7 +40,8 @@ def test_login2(client_return):
     # 測試若return test client，於call api結束後測試不會停留在flask的life cycle內，故測試看不懂g
     payload = {"username": 'admin',
                "password": 'password'}
-
+    # try this
+    # g.test = 0
     # use data to deal with formdata
     response = client_return.post("/login", data=payload)
 
@@ -50,10 +51,11 @@ def test_login2(client_return):
 
 
 def test_login3(client_yield):
-    # 測試yield test client的狀況下，於call api結束後仍停留在flask life cycle內，故測試看得懂g
+    # 測試yield test client的狀況下，於call api結束後仍停留在flask life cycle內，故可在call endpoint後看得懂g
     payload = {"username": 'admin',
                "password": 'password'}
-
+    # try this
+    # g.test = 0
     # use data to deal with formdata
     response = client_yield.post("/login", data=payload)
 
