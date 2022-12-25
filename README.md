@@ -120,3 +120,21 @@ conftest.py 文件被 Pytest 自動發現，
                 # yield讓測試結束前，測試本身都能停留在request行為內
                 yield test_client
    ```
+   
+## Mock
+
+Python mock 是一個用於 Python 中的測試的library。它可以讓你在測試過程中模擬對象的屬性或方法，並且可以設置這些模擬對象的預期行為。
+
+你可以使用 Python mock 來模擬一個函式，並設置它的返回值。你還可以使用 Python mock 來模擬一個對象的屬性或方法，並設置它們的預期行為。
+這些功能可以讓你在測試代碼時更加方便。
+
+Python mock 常與測試框架，如 Pytest 一起使用。本專案使用 Pytest 的 mocker 模組來使用 mock。
+
+常見的mock替代有幾種：
+
+- 替代耗時過久的功能，例如time.sleep()或datetime
+- 任何與網路有關的requests，避免網路與來源網站變更造成的影響
+- 與db相關的交握，防止對db造成負擔
+- 替代任何會干擾到測試的元素
+
+本專案的範例大致都會使用requests
