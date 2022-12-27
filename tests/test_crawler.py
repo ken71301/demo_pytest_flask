@@ -10,6 +10,7 @@ def test_mock_patch(mocker, client, global_param):
     """
     mocker.patch
     simple test 01
+    講解mock.patch
     """
     mock_response = mocker.Mock()
     mock_response.status_code = 200
@@ -29,6 +30,7 @@ def test_mock_patch_is_global(mocker, client, global_param):
     """
     mocker.patch
     simple test 02
+    講解mock.patch的特性及缺點
     """
     # here is ok
     test = requests.get("https://www.google.com.tw/")
@@ -42,13 +44,12 @@ def test_mock_patch_is_global(mocker, client, global_param):
     mock_get.return_value = mock_response
 
     # here we got something...
-    # patch is global,
+    # patch is module level
     test = requests.get("https://www.google.com.tw/")
     print(test)
 
-    # you can dodge it, but ugly
-    # mock an object is global replace, bypass it by import other object,
-    # but its very ugly, we recommend use patch.object
+    # patch an object is module level, bypass it by import other object,
+    # but its very ugly, we recommend use patch.object if needed
     test = get("https://www.google.com.tw/")
     print(test)
 
@@ -62,6 +63,8 @@ def test_mock_patch_object(mocker, client, global_param):
     """
     mocker.patch.object
     simple test
+    講解patch.object與patch的不同
+    講解在測試會經過多個檔案時如何讓mock侷限在單一檔案內
     """
 
     # here is ok
@@ -85,3 +88,20 @@ def test_mock_patch_object(mocker, client, global_param):
     response = client.get("/connect")
 
     assert response.json['name'] == 'me'
+
+
+@pytest.mark.crawler
+def test_mock_patch_object_side_effect(mocker, client, global_param):
+    """
+    預定講解side_effect
+    """
+    pass
+
+
+@pytest.mark.crawler
+def test_mock_patch_object_exception(mocker, client, global_param):
+    """
+    預定講解若mock的對象有被call到exception
+    可應用在對象的method / attribute
+    """
+    pass
