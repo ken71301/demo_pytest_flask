@@ -138,3 +138,11 @@ Python mock 常與測試框架，如 Pytest 一起使用。本專案使用 Pytes
 - 替代任何會干擾到測試的元素
 
 本專案的範例大致都會使用requests
+
+預定mock能用實例講的東西包含:
+
+- Mock()與MagicMock()
+- return_value()
+- patch與patch.object
+- mock對象需考慮的問題，例如於測試流程中有無重複使用 / 是否有attr或method被調用
+- side_effect
