@@ -24,29 +24,32 @@ fixture 函數使用 @pytest.fixture 裝飾器
 測試函數可以將其作為輸入引用。
 
 例如:
+```python3
+import pytest
 
-    import pytest
-
-    @pytest.fixture
-    def fixture_data():
-        return [1, 2, 3]
+@pytest.fixture
+def fixture_data():
+    return [1, 2, 3]
+```
 
 要在測試函數中使用此 fixture，可以將其指定為輸入引數：
-
-    def test_using_fixture(fixture_data):
-        assert len(fixture_data) == 3
+```python
+def test_using_fixture(fixture_data):
+   assert len(fixture_data) == 3
+```
 
 fixture 可以用來建立臨時資料庫，執行使用資料庫的測試，然後在測試完成後刪除資料庫。
 
 例如:
-    
-    import pytest
-    
-    @pytest.fixture
-        def db():
-            # open db
-            yield
-            # close db
+```python
+import pytest
+
+@pytest.fixture
+def db():
+   # open db
+   yield
+   # close db
+```
 
 Fixture 可以在任何 Python 模組中定義，
 但通常在名為 conftest.py 的文件中定義它們，
@@ -75,51 +78,51 @@ conftest.py 文件被 Pytest 自動發現，
 
 1. 用return test_client時，只可以在測試中看到response object，單純測試回傳值或status code時可以使用
 
-    ```
-    @pytest.fixture()
-    def app_return():
-        # 示範不yield，return test client的flow
-        # 只能測試response本身，沒有辦法看到request流程內部的狀況(g, signal之類)
-        app = create_app()
-        app.config.update({
-            "TESTING": True,
-        })
-    
-        with app.test_client() as test_client:
-            return test_client
-    ```
+```python
+@pytest.fixture()
+def app_return():
+   # 示範不yield，return test client的flow
+   # 只能測試response本身，沒有辦法看到request流程內部的狀況(g, signal之類)
+   app = create_app()
+   app.config.update({
+      "TESTING": True,
+   })
+   
+   with app.test_client() as test_client:
+      return test_client
+ ```
 
 2. 用yield test_client時，由於測試會停留在flask的life cycle內，可以在call api完後看懂flask內的東西，例如g:
 
-   ```
-    @pytest.fixture()
-    def app_yield():
-        # 示範不打開app context，可以在call client後測試g，但無法事先設定
-        app = create_app()
-        app.config.update({
-            "TESTING": True,
-        })
-    
-        with app.test_client() as test_client:
-            yield test_client
-    ```
+```python
+@pytest.fixture()
+def app_yield():
+   # 示範不打開app context，可以在call client後測試g，但無法事先設定
+   app = create_app()
+   app.config.update({
+      "TESTING": True,
+   })
+   
+   with app.test_client() as test_client:
+      yield test_client
+```
 3. 承2，手動開啟app context，可以在測試內的任何地方看懂g，例如可以另外設定g.param1，g.param2的值，提高測試的方便程度
 
-    ```
-    @pytest.fixture()
-    def app():
-        app = create_app()
-        # flask建議於測試時加入config
-        app.config.update({
-            "TESTING": True,
-        })
-    
-        with app.test_client() as test_client:
-            # 手動打開 app context，讓整個測試都能用g
-            with app.app_context():
-                # yield讓測試結束前，測試本身都能停留在request行為內
-                yield test_client
-   ```
+```python
+@pytest.fixture()
+def app():
+   app = create_app()
+   # flask建議於測試時加入config
+   app.config.update({
+      "TESTING": True,
+   })
+   
+   with app.test_client() as test_client:
+      # 手動打開 app context，讓整個測試都能用g
+      with app.app_context():
+          # yield讓測試結束前，測試本身都能停留在request行為內
+          yield test_client
+```
    
 ## Mock
 
