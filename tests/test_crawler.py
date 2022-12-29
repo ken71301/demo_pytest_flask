@@ -19,7 +19,7 @@ def test_mock_patch(mocker, client, global_param):
     mock_get = mocker.patch('requests.get')
     mock_get.return_value = mock_response
 
-    response = client.get("/connect")
+    response = client.get("/mock_test")
 
     assert response.status_code == 200
     assert response.json['name'] == 'me'
@@ -53,7 +53,7 @@ def test_mock_patch_is_global(mocker, client, global_param):
     test = get("https://www.google.com.tw/")
     print(test)
 
-    response = client.get("/connect")
+    response = client.get("/mock_test")
 
     assert response.json['name'] == 'me'
 
@@ -85,7 +85,7 @@ def test_mock_patch_object(mocker, client, global_param):
     test = requests.get("https://www.google.com.tw/")
     print(test)
 
-    response = client.get("/connect")
+    response = client.get("/mock_test")
 
     assert response.json['name'] == 'me'
 
@@ -95,13 +95,18 @@ def test_mock_patch_object_side_effect(mocker, client, global_param):
     """
     預定講解side_effect
     """
-    pass
+    mock_response = mocker.Mock()
+    mock_response.status_code = 200
+    mock_response.json.return_value = {'name': 'me'}
 
+    mock_response_another = mocker.Mock()
+    mock_response_another.status_code = 200
+    mock_response_another.json.return_value = {'gender': 'male'}
 
-@pytest.mark.crawler
-def test_mock_patch_object_exception(mocker, client, global_param):
-    """
-    預定講解若mock的對象有被call到exception
-    可應用在對象的method / attribute
-    """
-    pass
+    mock_requests = mocker.patch.object(crawler, 'requests')
+    mock_requests.get.side_effect = [mock_response, mock_response_another]
+
+    response = client.get("/side_effect_test")
+
+    assert response.json == {'name': 'me', 'gender': 'male'}
+
