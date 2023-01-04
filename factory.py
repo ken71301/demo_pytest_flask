@@ -1,6 +1,6 @@
 from flask import Flask
-from auth import app as auth_api
-from crawler import app as crawler_api
+from app.auth import app as auth_api
+from app.crawler import app as crawler_api
 
 
 def create_app():

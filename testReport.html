@@ -243,7 +243,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>testReport.html</h1>
-    <p>Report generated on 29-Dec-2022 at 22:48:42 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <p>Report generated on 04-Jan-2023 at 22:47:42 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -259,8 +259,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <td>Python</td>
         <td>3.9.13</td></tr></table>
     <h2>Summary</h2>
-    <p>9 tests ran in 0.92 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">8 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>5 tests ran in 0.26 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">5 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -271,37 +271,10 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
           <th class="sortable links" col="links">Links</th></tr>
         <tr hidden="true" id="not-found-message">
           <th colspan="4">No results found. Try to check the filters</th></tr></thead>
-      <tbody class="failed results-table-row">
-        <tr>
-          <td class="col-result">Failed</td>
-          <td class="col-name">tests/test_auth.py::test_login2</td>
-          <td class="col-duration">0.00</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log">client_return = &lt;FlaskClient &lt;Flask &#x27;factory&#x27;&gt;&gt;<br/><br/>    def test_login2(client_return):<br/>        # 測試若return test client，於call api結束後測試不會停留在flask的life cycle內，故測試看不懂g<br/>        payload = {&quot;username&quot;: &#x27;admin&#x27;,<br/>                   &quot;password&quot;: &#x27;password&#x27;}<br/>        # try this<br/>        # g.test = 0<br/>        # use data to deal with formdata<br/>        response = client_return.post(&quot;/login&quot;, data=payload)<br/>    <br/>        assert response.status_code == 200<br/>        assert &quot;登入成功&quot; in response.text<br/>&gt;       assert g.current_user == &#x27;admin&#x27;<br/><br/>tests\test_auth.py:50: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>..\..\.virtualenvs\demo_pytest_flask\lib\site-packages\werkzeug\local.py:316: in __get__<br/>    obj = instance._get_current_object()  # type: ignore[misc]<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>    def _get_current_object() -&gt; T:<br/>        try:<br/>            obj = local.get()  # type: ignore[union-attr]<br/>        except LookupError:<br/>&gt;           raise RuntimeError(unbound_message) from None<br/><span class="error">E           RuntimeError: Working outside of application context.</span><br/><span class="error">E           </span><br/><span class="error">E           This typically means that you attempted to use functionality that needed</span><br/><span class="error">E           the current application. To solve this, set up an application context</span><br/><span class="error">E           with app.app_context(). See the documentation for more information.</span><br/><br/>..\..\.virtualenvs\demo_pytest_flask\lib\site-packages\werkzeug\local.py:513: RuntimeError<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests/test_auth.py::test_index</td>
-          <td class="col-duration">0.01</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">tests/test_auth.py::test_login_page</td>
-          <td class="col-duration">0.01</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">tests/test_auth.py::test_login</td>
+          <td class="col-name">tests/test_sample.py::test_add[2-3-5]</td>
           <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
@@ -310,7 +283,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests/test_auth.py::test_login3</td>
+          <td class="col-name">tests/test_sample.py::test_add[-2-3-1]</td>
           <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
@@ -319,45 +292,25 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests/test_crawler.py::test_mock_patch</td>
+          <td class="col-name">tests/test_sample.py::test_add[2--3--1]</td>
           <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>&lt;class &#x27;unittest.mock.Mock&#x27;&gt;
-{&#x27;name&#x27;: &#x27;me&#x27;}
-<br/></div></td></tr></tbody>
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests/test_crawler.py::test_mock_patch_is_global</td>
-          <td class="col-duration">0.21</td>
+          <td class="col-name">tests/test_sample.py::test_add[0-0-0]</td>
+          <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>&lt;Response [200]&gt;
-&lt;Mock name=&#x27;get()&#x27; id=&#x27;1845321102000&#x27;&gt;
-&lt;Response [200]&gt;
-&lt;class &#x27;unittest.mock.Mock&#x27;&gt;
-{&#x27;name&#x27;: &#x27;me&#x27;}
-<br/></div></td></tr></tbody>
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">tests/test_crawler.py::test_mock_patch_object</td>
-          <td class="col-duration">0.19</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>&lt;Response [200]&gt;
-&lt;Response [200]&gt;
-&lt;class &#x27;unittest.mock.Mock&#x27;&gt;
-{&#x27;name&#x27;: &#x27;me&#x27;}
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">tests/test_crawler.py::test_mock_patch_object_side_effect</td>
+          <td class="col-name">tests/test_sample.py::test_add[1-1-2]</td>
           <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>

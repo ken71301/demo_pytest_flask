@@ -1,8 +1,7 @@
 import requests
 import pytest
 from requests import get
-from flask import g
-import crawler
+from app import crawler
 
 
 @pytest.mark.crawler
